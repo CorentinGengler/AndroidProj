@@ -13,6 +13,11 @@ public class AndroidExplorer  : MonoBehaviour
     public GameObject m_controlledObject;
     public GameObject m_projectile;
 
+    [Header("Simulate accelerator in Unity")]
+    [Range(-1, 1)]
+    public float m_x=0f;
+    [Range(-1, 1)]
+    public float m_y=0f;
     #endregion
 
 
@@ -65,7 +70,9 @@ public class AndroidExplorer  : MonoBehaviour
     void Awake () 
     {
         StartCoroutine(GetAndPrintLocation());
-	}
+        m_objBody = m_controlledObject.GetComponent<Rigidbody>();
+        m_timerShoot = m_cooldownShoot;
+    }
     
 	void Update () 
     {
@@ -78,26 +85,75 @@ public class AndroidExplorer  : MonoBehaviour
         m_isPlayerPressing = Input.touchCount > 0;
         if(m_isPlayerPressing)
         {
-            //m_mainTouch = Input.touches[0];
-            //m_firstTouchPosition = m_mainTouch.position;
+
+            if(Input.touchCount>1)
+        {
+        
+        }
+           // if(Input.touches[0]);
+
 
         }
 
 
         Vector3 temp = Input.acceleration;
-        temp.z = 0;
-        m_objbody = m_controlledObject.GetComponent<Rigidbody>();
-        if ((((m_objbody.velocity.x) < 0 && (temp.x) > 0)  || ((m_objbody.velocity.x) > 0 && (temp.x) < 0)) || (((m_objbody.velocity.y) < 0 && (temp.y) > 0) || ((m_objbody.velocity.y) > 0 && (temp.y) < 0)))
+        
+#else
+        //handle fake accelerator and touch on unity editor
+
+        /*if (Input.touchCount > 1)
         {
-            m_objbody.AddForce(3*temp);
+            if (Input.touches[0].) ;
+        }*/
+
+
+
+        Vector3 temp = new Vector3(m_x, m_y, 0);
+        m_debugText.text = "No Text";
+
+        #region shooting
+        if (Input.GetButtonUp("Fire1")) m_click = false;
+        if (Input.GetButtonDown("Fire1")) m_click = true;
+
+        if (m_timerShoot >= m_cooldownShoot)
+        {
+            if (m_click)
+            {
+                GameObject shoot= Instantiate(m_projectile, m_controlledObject.transform.position, transform.rotation);
+                Rigidbody shootBody = shoot.GetComponent<Rigidbody>();
+                Vector3 direction = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+                direction.Set(direction.x - 0.5f, direction.y - 0.5f, 0f);
+                //Debug.Log("direction: " + direction);
+                direction = direction.normalized;
+                //Debug.Log("mp: " + Input.mousePosition);
+                //Debug.Log("stw: " + Camera.main.ScreenToWorldPoint(Input.mousePosition));
+                //Debug.Log("stvp: " + Camera.main.ScreenToViewportPoint(Input.mousePosition));
+                Debug.Log("direction normalized: " + direction);
+                Debug.Log("positionMC: " + m_controlledObject.transform.position); 
+
+                shootBody.AddForce(direction * 500f);
+                m_timerShoot = 0f;
+            }
         }
         else
         {
-            m_objbody.AddForce(temp);
+            m_timerShoot += Time.deltaTime;
         }
-#else
+        
+        #endregion
 
 #endif
+        temp.z = 0;
+        if ((((m_objBody.velocity.x) < 0 && (temp.x) > 0) || ((m_objBody.velocity.x) > 0 && (temp.x) < 0)) || (((m_objBody.velocity.y) < 0 && (temp.y) > 0) || ((m_objBody.velocity.y) > 0 && (temp.y) < 0)))
+        {
+            m_objBody.AddForce(3 * temp);
+        }
+        else
+        {
+            m_objBody.AddForce(temp);
+        }
+        
+
 
         /*
         m_debugText.text += Input.touchCount.ToString(); // Number of finger on screne
@@ -141,10 +197,13 @@ public class AndroidExplorer  : MonoBehaviour
     private Touch m_mainTouch;
     private bool m_isPlayerPressing = false;
     private Vector2 m_firstTouchPosition;
-    private Rigidbody m_objbody;
+    private Rigidbody m_objBody;
 
     private bool m_isGettingLocation = false;
 
+    private bool m_click;
+    private float m_cooldownShoot = 1f;
+    private float m_timerShoot;
     #endregion
 
 }
