@@ -9,6 +9,7 @@ public class AndroidExplorer  : MonoBehaviour
 
 
     #region Public Members
+
     public Text m_debugText;
     public GameObject m_controlledObject;
     public GameObject m_projectile;
@@ -22,7 +23,6 @@ public class AndroidExplorer  : MonoBehaviour
 
 
     #region Public Void
-
     #endregion
 
     IEnumerator GetAndPrintLocation()
@@ -81,8 +81,7 @@ public class AndroidExplorer  : MonoBehaviour
             m_debugText.text = "Location: " + Input.location.lastData.latitude + " " + Input.location.lastData.longitude + " " + Input.location.lastData.altitude + " " + Input.location.lastData.horizontalAccuracy + " " + Input.location.lastData.timestamp;
         }
 
-#if UNITY_ANDROID && !UNITY_EDITOR
-        
+    #if UNITY_ANDROID && !UNITY_EDITOR
         
         #region shootingAndroid
         m_isPlayerPressing = Input.touchCount > 0;
@@ -106,11 +105,6 @@ public class AndroidExplorer  : MonoBehaviour
                 direction = direction.normalized;
                 Vector3 positionAltered = m_controlledObject.transform.position;
                 positionAltered.Set(positionAltered.x / 4.4f, positionAltered.y / 3.9f, 0f);
-                //Debug.Log("mp: " + Input.mousePosition);
-                //Debug.Log("stw: " + Camera.main.ScreenToWorldPoint(Input.mousePosition));
-                //Debug.Log("stvp: " + Camera.main.ScreenToViewportPoint(Input.mousePosition));
-                Debug.Log("direction normalized: " + direction);
-                Debug.Log("positionAltered: " + positionAltered);
                 Vector3 test = direction - positionAltered;
                 shootBody.AddForce(test * 500f);
                 m_timerShoot = 0f;
@@ -124,18 +118,11 @@ public class AndroidExplorer  : MonoBehaviour
         #endregion
 
         
-
         Vector3 temp = Input.acceleration;
         
-#else
-        //handle fake accelerator and touch on unity editor
-
-        /*if (Input.touchCount > 1)
-        {
-            if (Input.touches[0].) ;
-        }*/
-
-
+    #else
+        //fake accelerator and fake touch on unity editor
+        
 
         Vector3 temp = new Vector3(m_x, m_y, 0);
         m_debugText.text = "No Text";
@@ -157,9 +144,6 @@ public class AndroidExplorer  : MonoBehaviour
                 direction = direction.normalized;
                 Vector3 positionAltered = m_controlledObject.transform.position;
                 positionAltered.Set(positionAltered.x / 4.4f, positionAltered.y / 3.9f, 0f);
-                //Debug.Log("mp: " + Input.mousePosition);
-                //Debug.Log("stw: " + Camera.main.ScreenToWorldPoint(Input.mousePosition));
-                //Debug.Log("stvp: " + Camera.main.ScreenToViewportPoint(Input.mousePosition));
                 Debug.Log("direction normalized: " + direction);
                 Debug.Log("positionAltered: " + positionAltered);
                 Vector3 test = direction - positionAltered;
@@ -174,7 +158,9 @@ public class AndroidExplorer  : MonoBehaviour
 
         #endregion
 
-#endif
+    #endif
+
+
         temp.z = 0;
         if ((((m_objBody.velocity.x) < 0 && (temp.x) > 0) || ((m_objBody.velocity.x) > 0 && (temp.x) < 0)) || (((m_objBody.velocity.y) < 0 && (temp.y) > 0) || ((m_objBody.velocity.y) > 0 && (temp.y) < 0)))
         {
@@ -185,33 +171,6 @@ public class AndroidExplorer  : MonoBehaviour
             m_objBody.AddForce(temp);
         }
         
-
-
-        /*
-        m_debugText.text += Input.touchCount.ToString(); // Number of finger on screne
-        if (Input.touchCount > 0)
-            m_debugText.text += Input.touches[0].position.ToString(); // De 0,0 à 1,1 en pixel
-
-        m_debugText.text += Input.acceleration.ToString(); // Accélration
-        m_debugText.text += Input.compass.ToString(); // direction magnétique
-        m_debugText.text += Input.gyro.ToString(); // direction magnétique
-        m_debugText.text += Input.location.lastData.latitude.ToString();
-        */
-        /*
-        if (m_isPlayerPressing)
-        {
-            m_firstTouchPosition = Input.mousePosition;
-            //m_firstTouchPosition = m_mainTouch.position;
-            //m_controlledObject.SetActive(true);
-        }
-        */
-        /*
-        if (m_firstTouchPosition.x!=0 && m_firstTouchPosition.y != 0)
-        {
-            m_debugText.text = m_firstTouchPosition.ToString();
-        }
-        */
-
     }
 
     #endregion
