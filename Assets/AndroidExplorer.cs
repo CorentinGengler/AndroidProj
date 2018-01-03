@@ -82,19 +82,48 @@ public class AndroidExplorer  : MonoBehaviour
         }
 
 #if UNITY_ANDROID && !UNITY_EDITOR
-        m_isPlayerPressing = Input.touchCount > 0;
-        if(m_isPlayerPressing)
-        {
-
-            if(Input.touchCount>1)
-        {
         
+        
+        #region shootingAndroid
+        m_isPlayerPressing = Input.touchCount > 0;
+        if (m_isPlayerPressing)
+        {
+            m_click = true;
         }
-           // if(Input.touches[0]);
-
-
+        else
+        {
+            m_click = false;
         }
 
+        if (m_timerShoot >= m_cooldownShoot)
+        {
+            if (m_click)
+            {
+                GameObject shoot = Instantiate(m_projectile, m_controlledObject.transform.position, transform.rotation);
+                Rigidbody shootBody = shoot.GetComponent<Rigidbody>();
+                Vector3 direction = Camera.main.ScreenToViewportPoint(Input.touches[0].position);
+                direction.Set(direction.x - 0.5f, direction.y - 0.5f, 0f);
+                direction = direction.normalized;
+                Vector3 positionAltered = m_controlledObject.transform.position;
+                positionAltered.Set(positionAltered.x / 4.4f, positionAltered.y / 3.9f, 0f);
+                //Debug.Log("mp: " + Input.mousePosition);
+                //Debug.Log("stw: " + Camera.main.ScreenToWorldPoint(Input.mousePosition));
+                //Debug.Log("stvp: " + Camera.main.ScreenToViewportPoint(Input.mousePosition));
+                Debug.Log("direction normalized: " + direction);
+                Debug.Log("positionAltered: " + positionAltered);
+                Vector3 test = direction - positionAltered;
+                shootBody.AddForce(test * 500f);
+                m_timerShoot = 0f;
+            }
+        }
+        else
+        {
+            m_timerShoot += Time.deltaTime;
+        }
+                
+        #endregion
+
+        
 
         Vector3 temp = Input.acceleration;
         
@@ -112,6 +141,8 @@ public class AndroidExplorer  : MonoBehaviour
         m_debugText.text = "No Text";
 
         #region shooting
+
+
         if (Input.GetButtonUp("Fire1")) m_click = false;
         if (Input.GetButtonDown("Fire1")) m_click = true;
 
@@ -123,15 +154,16 @@ public class AndroidExplorer  : MonoBehaviour
                 Rigidbody shootBody = shoot.GetComponent<Rigidbody>();
                 Vector3 direction = Camera.main.ScreenToViewportPoint(Input.mousePosition);
                 direction.Set(direction.x - 0.5f, direction.y - 0.5f, 0f);
-                //Debug.Log("direction: " + direction);
                 direction = direction.normalized;
+                Vector3 positionAltered = m_controlledObject.transform.position;
+                positionAltered.Set(positionAltered.x / 4.4f, positionAltered.y / 3.9f, 0f);
                 //Debug.Log("mp: " + Input.mousePosition);
                 //Debug.Log("stw: " + Camera.main.ScreenToWorldPoint(Input.mousePosition));
                 //Debug.Log("stvp: " + Camera.main.ScreenToViewportPoint(Input.mousePosition));
                 Debug.Log("direction normalized: " + direction);
-                Debug.Log("positionMC: " + m_controlledObject.transform.position); 
-
-                shootBody.AddForce(direction * 500f);
+                Debug.Log("positionAltered: " + positionAltered);
+                Vector3 test = direction - positionAltered;
+                shootBody.AddForce(test * 500f);
                 m_timerShoot = 0f;
             }
         }
@@ -139,7 +171,7 @@ public class AndroidExplorer  : MonoBehaviour
         {
             m_timerShoot += Time.deltaTime;
         }
-        
+
         #endregion
 
 #endif
