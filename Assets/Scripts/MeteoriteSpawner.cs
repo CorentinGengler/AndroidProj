@@ -33,6 +33,10 @@ public class MeteoriteSpawner  : MonoBehaviour
         if (m_timerMeteoriteSpawn >= m_cooldownMeteorite)
         {
             int randomSpawningPoint = Random.Range(0, m_asteroidSpawners.Count-1);
+            while(randomSpawningPoint == m_previousRandom)
+            {
+                randomSpawningPoint = Random.Range(0, m_asteroidSpawners.Count - 1);
+            }
             int randomAsteroidModel = Random.Range(0, m_asteroidModels.Count-1);
             Instantiate(m_asteroidModels[randomAsteroidModel], 
                 m_asteroidSpawners[randomSpawningPoint].transform.position,
@@ -59,6 +63,7 @@ public class MeteoriteSpawner  : MonoBehaviour
 
     #region Private And Protected Members
     private float m_timerMeteoriteSpawn=0f;
+    private int m_previousRandom = 0;
     #endregion
 
 }

@@ -33,6 +33,7 @@ public class Asteroid  : MonoBehaviour
     {
         if(collision.transform.tag=="Shoot")
         {
+            Destroy(collision.gameObject);
             Destroy(transform.gameObject);
         }
         if (collision.transform.tag == "Player")
