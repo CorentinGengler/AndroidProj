@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 65005675584135742}
   - component: {fileID: 23945158980529502}
   - component: {fileID: 114329969982117926}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: TempWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,3 +106,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_isLeftWall: 0
+  m_rebound: 300

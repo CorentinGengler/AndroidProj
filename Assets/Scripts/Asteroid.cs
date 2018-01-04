@@ -7,7 +7,6 @@ public class Asteroid  : MonoBehaviour
 {
 
     #region Public 
-
     #endregion
 
 
@@ -22,7 +21,7 @@ public class Asteroid  : MonoBehaviour
     {
         transform.localScale *= Random.Range(0.2f, 1f);
         body = GetComponent<Rigidbody>();
-        body.velocity = new Vector3(0f, -Random.Range(0.2f, 0.4f), 0f);
+        body.velocity = new Vector3(0f, -Random.Range(1f, 3f), 0f);
     }
     void Awake () 
     {
@@ -31,12 +30,6 @@ public class Asteroid  : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        /*
-        if(collision.transform.tag=="Shoot")
-        {
-            Destroy(collision.gameObject);
-            Destroy(transform.gameObject);
-        }*/
         if (collision.transform.tag == "Player")
         {
             Destroy(collision.gameObject);

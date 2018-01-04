@@ -5,7 +5,7 @@ using UnityEngine;
 public class Walls  : MonoBehaviour
 {
     public bool m_isLeftWall =false;
-
+    public float m_rebound = 200;
     void Update()
     {
         if(m_timer!=0)
@@ -31,11 +31,11 @@ public class Walls  : MonoBehaviour
                 m_timer += Time.deltaTime;
                 if (m_isLeftWall)
                 {
-                    collision.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(500f, 0f, 0f));
+                    collision.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(m_rebound, 0f, 0f));
                 }
                 else
                 {
-                    collision.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(-500f, 0f, 0f));
+                    collision.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(-m_rebound, 0f, 0f));
                 }
             }
             
