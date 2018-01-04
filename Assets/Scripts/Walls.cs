@@ -4,11 +4,23 @@ using UnityEngine;
 
 public class Walls  : MonoBehaviour
 {
-    public bool m_isLeftWall =false;
+
     public float m_rebound = 200;
-    private void Awake()
+
+    void Awake()
     {
-        m_bouncingSound = FindObjectOfType<Camera>().GetComponent<AudioSource>();
+        AudioSource[] sounds = FindObjectOfType<Camera>().GetComponents<AudioSource>();
+        foreach (AudioSource sound in sounds)
+        {
+            if(sound.clip.name == "B1")
+            {
+                m_bouncingSound1 = sound;
+            }
+            if (sound.clip.name == "B2")
+            {
+                m_bouncingSound2 = sound;
+            }
+        }
     }
     void Update()
     {
@@ -28,26 +40,30 @@ public class Walls  : MonoBehaviour
         {
             DestroyObject(collision.gameObject);
         }
-        if (collision.transform.tag == "Player")
+        if (collision.transform.tag == "Player" )
         {
             if(m_timer==0f)//we don't want the force applied multiple times in case the colision last more than 1 frame so we use a timer;
             {
                 
-                m_bouncingSound.Play();
+                m_bouncingSound1.Play();
                 m_timer += Time.deltaTime;
-                if (m_isLeftWall)
-                {
-                    collision.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(m_rebound, 0f, 0f));
-                }
-                else
-                {
-                    collision.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(-m_rebound, 0f, 0f));
-                }
             }
             
+        }
+        if(collision.transform.tag == "Asteroid")
+        {
+            if (m_timer == 0f)//we don't want the force applied multiple times in case the colision last more than 1 frame so we use a timer;
+            {
+
+                m_bouncingSound2.Play();
+                m_timer += Time.deltaTime;
+            }
+
         }
     }
     private float m_timer = 0f;
     private float m_timeBeforeNextRebound = 0.5f;
-    private AudioSource m_bouncingSound;
+    private AudioSource m_bouncingSound1;
+    private AudioSource m_bouncingSound2;
+
 }

@@ -87,26 +87,32 @@ public class PlayerController : MonoBehaviour
     {
         if (m_click)
         {
-
-            if (!m_tempWallExists)
+            if(m_timerShield < m_maxTimeShield && !m_ShieldOverload)
             {
                 Vector3 posInWorld = TranslateInputMousePosToGamePos(position);
-                m_tempWall = Instantiate(m_tempWallPrefab, posInWorld, transform.rotation);
-                if (m_tempWall.transform.position.x > m_playerCharacter.transform.position.x)//so if the wall is to ther player's right
+                m_timerShield += 1 * Time.deltaTime;
+                if (!m_tempWallExists)
                 {
-                    m_tempWall.GetComponent<Walls>().m_isLeftWall = false;
+                    m_tempWall = Instantiate(m_tempWallPrefab, posInWorld, transform.rotation);
+                    m_tempWallExists = true;
                 }
                 else
                 {
-                    m_tempWall.GetComponent<Walls>().m_isLeftWall = true;
+                    //m_tempWall.GetComponent<Rigidbody>().position=posInWorld;
                 }
-                m_tempWallExists = true;
             }
+            else
+            {
+                m_ShieldOverload = true;
+                if (m_timerShield > m_maxTimeShield-10) m_timerShield -= 0.5f * Time.deltaTime;
+            }
+            
         }
         else
         {
             Destroy(m_tempWall);
             m_tempWallExists = false;
+            if(m_timerShield>0) m_timerShield -= 0.5f * Time.deltaTime;
         }
     }
 #endregion
@@ -119,8 +125,9 @@ public class PlayerController : MonoBehaviour
     private bool m_tempWallExists = false;
     private bool m_isGettingLocation = false;
     private bool m_click;
-    private float m_cooldownShoot = 1f;
-    private float m_timerShoot;
+    private bool m_ShieldOverload = false;
+    private float m_maxTimeShield = 10f;
+    private float m_timerShield = 0;
 #endregion
     
 }
