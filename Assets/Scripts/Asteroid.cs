@@ -22,7 +22,7 @@ public class Asteroid  : MonoBehaviour
     {
         transform.localScale *= Random.Range(0.2f, 1f);
         body = GetComponent<Rigidbody>();
-        body.velocity = new Vector3(0f, -Random.Range(0.2f, 1f), 0f);
+        body.velocity = new Vector3(0f, -Random.Range(0.2f, 0.4f), 0f);
     }
     void Awake () 
     {

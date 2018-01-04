@@ -147,6 +147,7 @@ GameObject:
   - component: {fileID: 398485408}
   - component: {fileID: 398485407}
   - component: {fileID: 398485406}
+  - component: {fileID: 398485410}
   m_Layer: 10
   m_Name: Wall1
   m_TagString: Untagged
@@ -191,12 +192,44 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 398485405}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.16, y: -1.7, z: 0}
+  m_LocalPosition: {x: -5.94, y: -1.7, z: 0}
   m_LocalScale: {x: 3, y: 20, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &398485410
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 398485405}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &550103323
 GameObject:
   m_ObjectHideFlags: 0
@@ -353,6 +386,7 @@ GameObject:
   - component: {fileID: 622903518}
   - component: {fileID: 622903517}
   - component: {fileID: 622903516}
+  - component: {fileID: 622903520}
   m_Layer: 10
   m_Name: Wall2
   m_TagString: Untagged
@@ -397,34 +431,44 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 622903515}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.09, y: -1.7, z: 0}
+  m_LocalPosition: {x: 5.96, y: -1.7, z: 0}
   m_LocalScale: {x: 3, y: 20, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &796699725 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1386567633750108, guid: 03b6ebe8c2f57b047b75bd0b795a2af5,
-    type: 2}
-  m_PrefabInternal: {fileID: 1212170221}
---- !u!114 &796699731
-MonoBehaviour:
+--- !u!23 &622903520
+MeshRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 796699725}
+  m_GameObject: {fileID: 622903515}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ee2780cdc81d4d4cb98f783cc09e8b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_debugText: {fileID: 1931583853}
-  m_controlledObject: {fileID: 796699725}
-  m_projectile: {fileID: 1333912028253400, guid: c3c7a5fa15b39c54f8c0127c020912b0,
-    type: 2}
-  m_x: 0
-  m_y: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &824825338
 GameObject:
   m_ObjectHideFlags: 0
@@ -704,6 +748,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 114447674011271060, guid: 03b6ebe8c2f57b047b75bd0b795a2af5,
+        type: 2}
+      propertyPath: m_debugText
+      value: 
+      objectReference: {fileID: 1931583853}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 03b6ebe8c2f57b047b75bd0b795a2af5, type: 2}
   m_IsPrefabParent: 0
@@ -881,7 +930,7 @@ MonoBehaviour:
   - {fileID: 1766009961343628, guid: 0e29962d517ffa244a1bf21d88d9bca3, type: 2}
   - {fileID: 1875183294436044, guid: 03d93a634aad6bc439031bb64f2d4d68, type: 2}
   - {fileID: 1290231193872770, guid: b09eaa52f58ea9f4fa2148a30af435f0, type: 2}
-  m_cooldownMeteorite: 0.5
+  m_cooldownMeteorite: 2
 --- !u!4 &1428710280
 Transform:
   m_ObjectHideFlags: 0
