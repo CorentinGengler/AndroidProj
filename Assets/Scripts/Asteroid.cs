@@ -31,11 +31,12 @@ public class Asteroid  : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
+        /*
         if(collision.transform.tag=="Shoot")
         {
             Destroy(collision.gameObject);
             Destroy(transform.gameObject);
-        }
+        }*/
         if (collision.transform.tag == "Player")
         {
             Destroy(collision.gameObject);
