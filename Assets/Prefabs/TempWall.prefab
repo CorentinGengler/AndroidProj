@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114329969982117926}
   m_Layer: 10
   m_Name: TempWall
-  m_TagString: Untagged
+  m_TagString: Asteroid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

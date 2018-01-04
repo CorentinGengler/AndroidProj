@@ -114,14 +114,10 @@ public class PlayerController : MonoBehaviour
 
 
 #region Private And Protected Members
-    private Touch m_mainTouch;
-    private bool m_isPlayerPressing = false;
-    private Vector2 m_firstTouchPosition;
     private Rigidbody m_objBody;
     private GameObject m_tempWall;
     private bool m_tempWallExists = false;
     private bool m_isGettingLocation = false;
-
     private bool m_click;
     private float m_cooldownShoot = 1f;
     private float m_timerShoot;

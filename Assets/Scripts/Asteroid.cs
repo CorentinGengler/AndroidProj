@@ -21,19 +21,18 @@ public class Asteroid  : MonoBehaviour
     {
         transform.localScale *= Random.Range(0.2f, 1f);
         body = GetComponent<Rigidbody>();
-        body.velocity = new Vector3(0f, -Random.Range(1f, 3f), 0f);
+        body.velocity = new Vector3(0f, -Random.Range(2f, 5f), 0f);
     }
     void Awake () 
     {
-        m_debugText = FindObjectOfType<Canvas>().GetComponent<Text>();
+        m_canvas = FindObjectOfType<Canvas>();
 
     }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.tag == "Player")
         {
-            Destroy(collision.gameObject);
-            m_debugText.text = "GAME OVER";
+            m_canvas.GetComponent<Manager>().GameOver();
         }
     }
     void Update () 
@@ -54,7 +53,7 @@ public class Asteroid  : MonoBehaviour
 
     #region Private And Protected Members
     private Rigidbody body;
-    private Text m_debugText;
+    private Canvas m_canvas;
     #endregion
 
 }

@@ -40,8 +40,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1386567633750108}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0, y: -3, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -112,11 +112,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_debugText: {fileID: 0}
-  m_controlledObject: {fileID: 1386567633750108}
-  m_projectile: {fileID: 1333912028253400, guid: c3c7a5fa15b39c54f8c0127c020912b0,
+  m_playerCharacter: {fileID: 1386567633750108}
+  m_tempWallPrefab: {fileID: 1124050701075590, guid: b79097553e840d14e885c857c8ad3c64,
     type: 2}
+  m_Basespeed: 2
   m_x: 0
-  m_y: 0
 --- !u!135 &135189078990469118
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -188,7 +188,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1875762934
+  randomSeed: 601234348
   InitialModule:
     serializedVersion: 3
     enabled: 1

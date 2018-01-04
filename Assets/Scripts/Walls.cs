@@ -6,6 +6,10 @@ public class Walls  : MonoBehaviour
 {
     public bool m_isLeftWall =false;
     public float m_rebound = 200;
+    private void Awake()
+    {
+        m_bouncingSound = FindObjectOfType<Camera>().GetComponent<AudioSource>();
+    }
     void Update()
     {
         if(m_timer!=0)
@@ -28,6 +32,8 @@ public class Walls  : MonoBehaviour
         {
             if(m_timer==0f)//we don't want the force applied multiple times in case the colision last more than 1 frame so we use a timer;
             {
+                
+                m_bouncingSound.Play();
                 m_timer += Time.deltaTime;
                 if (m_isLeftWall)
                 {
@@ -43,4 +49,5 @@ public class Walls  : MonoBehaviour
     }
     private float m_timer = 0f;
     private float m_timeBeforeNextRebound = 0.5f;
+    private AudioSource m_bouncingSound;
 }
