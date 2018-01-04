@@ -217,8 +217,8 @@ PlayerSettings:
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: 
-  AndroidKeyaliasName: 
+  AndroidKeystoreName: C:/Users/student107/Documents/NewGitPath/KEY/Corentin-Neil.keystore
+  AndroidKeyaliasName: corentin-neil
   AndroidTVCompatibility: 1
   AndroidIsGame: 1
   androidEnableBanner: 1
