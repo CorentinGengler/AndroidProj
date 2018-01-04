@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
             m_click = false;
         }
         movement = Input.acceleration;
-        movement.Set(movement.x, 0f, 0f);
+        movement.Set(movement.x, movement.y, 0f);
 #else
         if (Input.GetButtonUp("Fire1")) m_click = false;
         if (Input.GetButtonDown("Fire1"))
@@ -61,15 +61,15 @@ public class PlayerController : MonoBehaviour
     
 
 #region Private Void
-    private void Move(Vector3 xAxisMove)
+    private void Move(Vector3 vectorMove)
     {
-        if ((m_objBody.velocity.x < 0 && xAxisMove.x > 0) || ((m_objBody.velocity.x) > 0 && (xAxisMove.x) < 0)) //makes it faster when changing direction
+        if ((m_objBody.velocity.x < 0 && vectorMove.x > 0) || ((m_objBody.velocity.x) > 0 && (vectorMove.x) < 0) || (m_objBody.velocity.y < 0 && vectorMove.y > 0) || ((m_objBody.velocity.y) > 0 && (vectorMove.y) < 0)) //makes it faster when changing direction
         {
-            m_objBody.AddForce(3 * m_Basespeed * xAxisMove);
+            m_objBody.AddForce(3 * m_Basespeed * vectorMove);
         }
         else
         {
-            m_objBody.AddForce(m_Basespeed * xAxisMove);
+            m_objBody.AddForce(m_Basespeed * vectorMove);
         }
     }
     
